@@ -38,7 +38,9 @@ class ProxySourceTaxonomyIndexGenerator implements GeneratorInterface
                 $source->sourceId().':'.$this->injectedTaxonKey.'='.$taxon
             );
 
-            $permalink = $source->data()->get('permalink') ?: $source->relativePathname();
+            $slug = new \Cocur\Slugify\Slugify();
+            $taxon = $slug->slugify($taxon);
+
             $basename = basename($permalink);
 
             $permalink = dirname($permalink);
